@@ -1,10 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { themeReducer,authReducer } from './slices'
-export const store = configureStore({
-  reducer: {
-    theme:themeReducer,
+import {persistReducer} from 'redux-persist'
+import { combineReducers } from '@reduxjs/toolkit'
+import persistConfig from '../configs/persist.config'
+
+const reducer=combineReducers({
+  theme:themeReducer,
     auth:authReducer
-  },
+})
+
+const persistedReducer=persistReducer(persistConfig,reducer)
+
+export const store = configureStore({
+  reducer: persistedReducer,
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

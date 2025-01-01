@@ -1,3 +1,4 @@
+import { PaletteMode } from '@mui/material';
 export interface IUser{
     username: string;
     email: string;
@@ -6,11 +7,15 @@ export interface IUser{
     password: string;
 }
 export interface ITheme{
-    selectedTheme: string;  
+    selectedTheme: PaletteMode;  
 }
 
 export interface IAuth{
     isLogged: boolean;
-    expiredAt:string;
+    refreshToken:string;
     authToken:string;
+}
+export interface IAPIResponse {
+	status: boolean;
+	data: any;
 }

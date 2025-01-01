@@ -1,7 +1,18 @@
 import Logo from "../assets/logo.png";
 import { Img1 } from "../assets";
 import { FcGoogle } from "react-icons/fc";
+import { useAppDispatch } from "../store/hooks";
+import { login } from "../store/slices/authSlice";
 const Login = () => {
+  const dispatch =useAppDispatch();
+  const handleLogin=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    e.preventDefault();
+    dispatch(login({
+      authToken:"1234",
+      refreshToken:""
+    }))
+    
+  }
   return (
     <div className="h-svh bg-white sm:bg-gray-200 w-svw flex justify-center sm:items-center">
       <div className=" flex gap-2 bg-white w-full s:w-[70%] sm:max-w-lg h-fit p-5 lg:max-w-4xl">
@@ -37,6 +48,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="btn btn-info text-white font-semibold bg-blue-600"
+                onClick={handleLogin}
               >
                 Login
               </button>

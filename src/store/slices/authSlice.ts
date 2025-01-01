@@ -3,23 +3,23 @@ import { IAuth } from "../../types/types";
 
 const initialState:IAuth={
     isLogged:false,
-    expiredAt:"",
-    authToken:""
+    refreshToken:localStorage.getItem("refreshToken") || "",
+    authToken:localStorage.getItem("authToken") || ""
 }
 
 const authSlice=createSlice({
     name:"auth",
     initialState,
     reducers:{
-        login:(state,action:PayloadAction<{authToken:string,expiredAt:string}>)=>{
+        login:(state,action:PayloadAction<{authToken:string,refreshToken:string}>)=>{
             state.isLogged=true;
             state.authToken=action.payload.authToken;
-            state.expiredAt=action.payload.expiredAt;
+            state.refreshToken=action.payload.refreshToken;
         },
         logout:(state)=>{
             state.isLogged=false;
             state.authToken="";
-            state.expiredAt="";
+            state.refreshToken="";
         }
     }
 })

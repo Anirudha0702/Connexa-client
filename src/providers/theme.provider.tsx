@@ -9,9 +9,9 @@ interface CustomThemeProviderProps {
 export const CustomThemeProvider = ({ children }: CustomThemeProviderProps) => {
   const selectedTheme = useAppSelector((state) => state.theme.selectedTheme);
   const theme = createTheme({
-    colorSchemes: {
-      dark: selectedTheme === 'dark',
-    },
+    palette:{
+      mode: selectedTheme ,
+    }
   });
   return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
 };
